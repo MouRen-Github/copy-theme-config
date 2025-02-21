@@ -1,0 +1,16 @@
+.
+├── background/                # 后台脚本
+│   └── background.js         # 处理扩展的核心逻辑
+├── content/                   # 内容脚本
+│   └── content.js            # 注入到网页中执行
+├── icons/                     # 扩展图标
+│   ├── icon16.png
+│   ├── icon48.png
+│   └── icon128.png
+├── pages/                     # 扩展的页面
+│   ├── main.html              # 主界面
+│   ├── main.js                # 主界面的逻辑
+│   └── main.css               # 主界面的样式
+├── utils/                     # 工具函数
+│   └── common.js              # 通用的工具方法
+└── manifest.json              # 扩展的配置文件

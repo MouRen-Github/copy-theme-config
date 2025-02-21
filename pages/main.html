@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>主题数据提取工具</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <div id="content" class="main-layout">
+      <!-- 左侧内容区域 -->
+      <section class="left-section">
+        <!-- 结果提示区域 -->
+        <div id="result"></div>
+        
+        <!-- 主要内容区域 -->
+        <div class="content-row">
+          <!-- 预览区域 -->
+          <section class="preview-section">
+            <h3>页面预览</h3>
+            <div id="previewContainer" class="preview-container">
+              <div class="preview-placeholder">
+                在此处显示页面预览
+              </div>
+            </div>
+          </section>
+
+          <!-- JSON数据显示区域 -->
+          <section class="json-container">
+            <!-- 主题数据显示 -->
+            <div class="json-block">
+              <h3>Theme 数据</h3>
+              <textarea 
+                id="themeData" 
+                class="json-display" 
+                readonly 
+                placeholder="主题数据将在此显示"
+              ></textarea>
+            </div>
+            <!-- API数据显示 -->
+            <div class="json-block">
+              <h3>修改后的 API 数据</h3>
+              <textarea 
+                id="modifiedApiData" 
+                class="json-display" 
+                readonly 
+                placeholder="修改后的API数据将在此显示"
+              ></textarea>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- 右侧控制区域 -->
+      <section class="right-section">
+        <div class="control-panel">
+          <!-- URL和路径输入组 -->
+          <div class="input-group">
+            <input 
+              type="url" 
+              id="urlInput" 
+              class="url-input" 
+              placeholder="请输入要验证的URL"
+              value=""
+            >
+            <input 
+              type="text" 
+              id="jsonPathInput" 
+              class="url-input" 
+              placeholder="请输入JSON路径 (例如: global.cart)"
+              value="global.search"
+            >
+            <button id="verifyBtn" class="verify-btn">验证URL</button>
+          </div>
+
+          <!-- API相关输入组 -->
+          <div class="input-group">
+            <input 
+              type="url" 
+              id="apiUrlInput" 
+              class="url-input" 
+              placeholder="请输入API请求地址"
+              value=""
+            >
+            <input 
+              type="text" 
+              id="tokenInput" 
+              class="token-input" 
+              placeholder="请输入访问令牌"
+              value=""
+            >
+            <button id="getApiDataBtn" class="verify-btn">获取API数据</button>
+            <button id="updateBtn" class="update-btn">更新主题</button>
+          </div>
+
+          <!-- 配置选项 -->
+          <div class="config-group">
+            <label class="config-item">
+              <input type="checkbox" id="autoCloseTab" checked>
+              自动关闭新建标签页
+            </label>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  
+  <!-- 消息弹窗 -->
+  <div id="messageModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-message"></div>
+    </div>
+  </div>
+  
+  <!-- 脚本引入 -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
