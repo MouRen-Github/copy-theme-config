@@ -39,7 +39,6 @@ function getPageData() {
         
         // 验证数据有效性
         if (data && typeof data === 'object') {
-          console.log('找到主题数据:', data);
           clearTimeout(timeoutId);
           resolve(data);
           return true;
@@ -68,7 +67,6 @@ function getPageData() {
       // 如果没有立即找到，设置一个超时
       timeoutId = setTimeout(() => {
         observer.disconnect();
-        console.log('数据获取超时');
         resolve(null);
       }, 5000); // 5秒超时
     }
@@ -100,7 +98,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         });
 
         const data = results[0].result;
-        console.log('执行脚本获取的数据：', data);
         
         // 根据配置决定是否关闭标签页
         if (request.autoClose) {

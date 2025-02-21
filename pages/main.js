@@ -10,7 +10,6 @@ import {
 } from '../utils/common.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('主页面已加载');
   
   // 获取常用DOM元素
   const elements = {
@@ -114,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     try {
       // 解析JSON数据
-      console.log('主题数据:', themeData);
       const themeJson = JSON.parse(themeData);
 
       // 验证主题数据格式
