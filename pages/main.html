@@ -68,27 +68,37 @@
               id="jsonPathInput" 
               class="url-input" 
               placeholder="请输入JSON路径 (例如: global.cart)"
-              value="global.search"
+              value=""
             >
             <button id="verifyBtn" class="verify-btn">验证URL</button>
           </div>
 
           <!-- API相关输入组 -->
           <div class="input-group">
-            <input 
-              type="url" 
-              id="apiUrlInput" 
-              class="url-input" 
-              placeholder="请输入API请求地址"
-              value=""
-            >
-            <input 
-              type="text" 
-              id="tokenInput" 
-              class="token-input" 
-              placeholder="请输入访问令牌"
-              value=""
-            >
+            <div class="api-url-wrapper">
+              <input 
+                type="url" 
+                id="apiUrlInput" 
+                class="url-input" 
+                placeholder="请输入API请求地址或cURL命令"
+                value=""
+              >
+              <button id="parseCurlBtn" class="parse-btn" title="解析cURL命令">
+                <span class="parse-icon">🔍</span>
+              </button>
+            </div>
+            <div class="token-input-wrapper">
+              <input 
+                type="text" 
+                id="tokenInput" 
+                class="token-input" 
+                placeholder="请输入访问令牌"
+                value=""
+              >
+              <button id="tokenLockBtn" class="lock-btn" title="锁定/解锁令牌">
+                <span class="lock-icon">🔒</span>
+              </button>
+            </div>
             <button id="getApiDataBtn" class="verify-btn">获取API数据</button>
             <button id="updateBtn" class="update-btn">更新主题</button>
           </div>

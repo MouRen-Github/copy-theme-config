@@ -272,4 +272,121 @@ body {
 
 .modal-message.warning {
   color: #ff9800;
+}
+
+/* 调整输入框和按钮的布局 */
+.api-url-wrapper,
+.token-input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px; /* 增加间距 */
+}
+
+.api-url-wrapper .url-input,
+.token-input-wrapper .token-input {
+  width: 100%;
+  padding-right: 40px; /* 留出按钮的空间 */
+  box-sizing: border-box; /* 确保padding包含在宽度内 */
+}
+
+/* 调整按钮位置 */
+.api-url-wrapper .parse-btn,
+.token-input-wrapper .lock-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  color: #666;
+  transition: color 0.2s;
+}
+
+/* 调整按钮hover效果 */
+.api-url-wrapper .parse-btn:hover,
+.token-input-wrapper .lock-btn:hover {
+  color: #2196F3;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+/* 禁用状态 */
+.api-url-wrapper .parse-btn[disabled] {
+  color: #ccc;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.token-input-wrapper {
+  position: relative;
+}
+
+.lock-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.lock-btn:hover {
+  color: #2196F3;
+}
+
+.lock-btn.locked {
+  color: #F44336;
+}
+
+.lock-btn.locked:hover {
+  color: #E53935;
+}
+
+.token-input[readonly] {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+
+.api-url-wrapper {
+  position: relative;
+}
+
+.parse-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.parse-btn:hover {
+  color: #2196F3;
+}
+
+.parse-btn[disabled] {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.parse-btn.active {
+  color: #4CAF50;
 } 

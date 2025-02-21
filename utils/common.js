@@ -25,17 +25,13 @@ export function showMessage(message, type = 'info', duration = 500) {
 }
 
 /**
- * 根据路径获取对象中的值，支持数组索引
+ * 改进的路径获取函数
  * @param {Object} obj - 要获取值的对象
- * @param {string} path - 路径字符串，例如: 
- *   - "user.name"          // 普通对象属性
- *   - "users[0].name"      // 数组索引访问
- *   - "user.[0].name"      // 点号后的数组索引
- *   - "data.items[1][0]"   // 多维数组
+ * @param {string} path - 路径字符串
  * @returns {*} 找到的值，如果路径无效则返回undefined
  */
 export function getValueByPath(obj, path) {
-  if (!path) return obj;
+  if (!path || typeof path !== 'string') return obj;
   
   // 预处理路径，处理 xxx.[0] 的情况
   path = path.replace(/\.\[/g, '[');
@@ -52,12 +48,11 @@ export function getValueByPath(obj, path) {
     
     // 处理数组索引
     if (token.startsWith('[') && token.endsWith(']')) {
-      const index = parseInt(token.slice(1, -1));
-      if (Array.isArray(result)) {
-        result = result[index];
-      } else {
-        return undefined; // 当前值不是数组但使用了数组索引
+      const index = parseInt(token.slice(1, -1), 10);
+      if (isNaN(index) || !Array.isArray(result)) {
+        return undefined;
       }
+      result = result[index];
     }
     // 处理对象属性
     else {
@@ -69,17 +64,14 @@ export function getValueByPath(obj, path) {
 }
 
 /**
- * 根据路径设置对象中的值
+ * 改进的路径设置函数
  * @param {Object} obj - 要设置值的对象
- * @param {string} path - 路径字符串，例如: 
- *   - "user.name"
- *   - "users[0].name"
- *   - "user.[0].name"
+ * @param {string} path - 路径字符串
  * @param {*} value - 要设置的值
  * @returns {Object} 修改后的对象
  */
 export function setValueByPath(obj, path, value) {
-  if (!path) return obj;
+  if (!path || typeof path !== 'string') return value;
   
   // 预处理路径，处理 xxx.[0] 的情况
   path = path.replace(/\.\[/g, '[');
@@ -100,7 +92,10 @@ export function setValueByPath(obj, path, value) {
     
     // 处理数组索引
     if (token.startsWith('[') && token.endsWith(']')) {
-      const index = parseInt(token.slice(1, -1));
+      const index = parseInt(token.slice(1, -1), 10);
+      if (isNaN(index)) {
+        throw new Error(`无效的数组索引: ${token}`);
+      }
       // 如果下一层不存在或不是数组，创建数组
       if (!Array.isArray(current)) {
         current = [];
@@ -124,7 +119,10 @@ export function setValueByPath(obj, path, value) {
   // 设置最后一层的值
   const lastToken = tokens[tokens.length - 1];
   if (lastToken.startsWith('[') && lastToken.endsWith(']')) {
-    const index = parseInt(lastToken.slice(1, -1));
+    const index = parseInt(lastToken.slice(1, -1), 10);
+    if (isNaN(index)) {
+      throw new Error(`无效的数组索引: ${lastToken}`);
+    }
     if (!Array.isArray(current)) {
       current = [];
     }
